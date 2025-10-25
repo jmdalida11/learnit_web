@@ -9,14 +9,18 @@
     "typecheck": "react-router typegen && tsc"
   },
   "dependencies": {
+    "@chakra-ui/react": "^3.28.0",
+    "@emotion/react": "^11.14.0",
     "@react-router/node": "^7.9.2",
     "@react-router/serve": "^7.9.2",
     "isbot": "^5.1.31",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
+    "react-hook-form": "^7.65.0",
     "react-router": "^7.9.2"
   },
   "devDependencies": {
+    "@chakra-ui/cli": "^3.28.0",
     "@react-router/dev": "^7.9.2",
     "@tailwindcss/vite": "^4.1.13",
     "@types/node": "^22",

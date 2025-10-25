@@ -1,9 +1,18 @@
-import type { Route } from "./+types";
+// import type { Route } from "./+types";
 
-export function meta({}: Route.MetaArgs) {
-  return [{ title: "Learn It!" }];
-}
+// export function meta({}: Route.MetaArgs) {
+//   return [{ title: "Learn It!" }];
+// }
+
+import { Button, HStack } from "@chakra-ui/react";
 
 export default function Home() {
-  return <div>Home Page</div>;
+  return (
+    <div>
+      <HStack>
+        <Button>Click me</Button>
+        <Button>Click me</Button>
+      </HStack>
+    </div>
+  );
 }

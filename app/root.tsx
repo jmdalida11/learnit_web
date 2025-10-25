@@ -9,6 +9,7 @@ import {
 
 import "./app.css";
 import type { Route } from "./routes/+types";
+import Providers from "./providers/providers";
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -30,7 +31,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
-  return <Outlet />;
+  return (
+    <Providers>
+      <Outlet />
+    </Providers>
+  );
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {

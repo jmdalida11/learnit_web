@@ -8,7 +8,6 @@ interface FormInputProps extends ComponentProps<"input"> {
 }
 
 const FormInput = ({ label, error, ...props }: FormInputProps) => {
-  console.log(props);
   return (
     <fieldset className="fieldset">
       <legend className="fieldset-legend text-base">{label}</legend>

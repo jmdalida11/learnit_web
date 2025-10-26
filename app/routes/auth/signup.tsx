@@ -1,6 +1,9 @@
+import { useState } from "react";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { NavLink } from "react-router";
+import { signUpRequest } from "~/api/auth";
 import FormInput from "~/components/inputs/formInput";
+import { cn } from "~/utils/cn";
 
 type Inputs = {
   username: string;
@@ -9,11 +12,12 @@ type Inputs = {
   email: string;
 };
 
-const Register = () => {
+const Signup = () => {
   const {
     handleSubmit,
     formState: { errors },
     register,
+    reset,
   } = useForm<Inputs>({
     defaultValues: {
       username: "",
@@ -23,15 +27,45 @@ const Register = () => {
     },
   });
 
-  const onSubmit: SubmitHandler<Inputs> = (data) => {
-    console.log(data);
+  const [isLoading, setIsLoading] = useState(false);
+  const [toastMessage, setToastMessage] = useState<string | null>(null);
+  const [toastStatus, setToastStatus] = useState<"success" | "error">(
+    "success"
+  );
+
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    try {
+      setIsLoading(true);
+
+      await signUpRequest(data);
+
+      setToastMessage("Successfully Created!");
+      setToastStatus("success");
+      reset();
+    } catch (error: any) {
+      setToastStatus("error");
+      setToastMessage(error.message);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
     <form method="POST" onSubmit={handleSubmit(onSubmit)}>
-      <div className="card-lg w-96 bg-base-100 shadow-lg p-5!">
-        <h2 className="card-title mb-2!">Sign up</h2>
+      <div className="card-lg w-96 bg-base-200 shadow-lg">
+        {toastMessage && (
+          <div
+            className={cn(
+              `w-full flex justify-center bg-error`,
+              toastStatus === "success" && "bg-success",
+              toastStatus === "error" && "bg-red-500"
+            )}
+          >
+            {toastMessage}
+          </div>
+        )}
         <div className="card-body">
+          <h2 className="card-title">Sign up</h2>
           <div>
             <FormInput
               label={"Username"}
@@ -72,13 +106,17 @@ const Register = () => {
               error={errors?.email}
             />
           </div>
-          <div className="justify-end card-actions">
-            <NavLink to="/login" className="btn btn-active px-3!">
-              Back to login
-            </NavLink>
-            <button className="btn btn-active px-3!" type="submit">
-              Create Account
+          <div className="card-actions">
+            <button className="btn btn-active w-full" type="submit">
+              {isLoading ? (
+                <span className="loading loading-dots loading-xl"></span>
+              ) : (
+                "Create Account"
+              )}
             </button>
+            <NavLink to="/login" className="btn btn-active w-full">
+              Login
+            </NavLink>
           </div>
         </div>
       </div>
@@ -86,4 +124,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default Signup;

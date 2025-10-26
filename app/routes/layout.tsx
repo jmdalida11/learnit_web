@@ -1,12 +1,16 @@
 import { Outlet } from "react-router";
+import Navbar from "./navbar";
 import { useCheckAuth } from "~/hooks/useCheckAuth";
 
-export default function Layout() {
-  useCheckAuth(true);
+const Layout = () => {
+  useCheckAuth();
 
   return (
-    <div className="grid place-items-center h-screen">
+    <div>
+      <Navbar />
       <Outlet />
     </div>
   );
-}
+};
+
+export default Layout;

@@ -12,10 +12,8 @@ import { useNavigate } from "react-router";
 import { logoutRequest } from "~/api/auth";
 
 const navigation = [
-  { name: "Dashboard", href: "#", current: true },
-  { name: "Team", href: "#", current: false },
-  { name: "Projects", href: "#", current: false },
-  { name: "Calendar", href: "#", current: false },
+  { name: "Notes", href: "#", current: true },
+  { name: "Quizzes", href: "#", current: false },
 ];
 
 function classNames(...classes: any[]) {

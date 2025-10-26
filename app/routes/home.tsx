@@ -1,13 +1,12 @@
-// import type { Route } from "./+types";
-
-// export function meta({}: Route.MetaArgs) {
-//   return [{ title: "Learn It!" }];
-// }
+import MyNotes from "~/modules/notes/myNotes";
 
 export default function Home() {
   return (
-    <div>
-      <h1>Home</h1>
+    <div className="mt-5">
+      <button className="btn">Add new note</button>
+      <div className="mt-5">
+        <MyNotes />
+      </div>
     </div>
   );
 }

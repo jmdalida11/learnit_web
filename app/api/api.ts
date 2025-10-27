@@ -41,10 +41,13 @@ const apiCall = async <T>(url: string, config: Config<T>) => {
 };
 
 export const api = {
+  get: (url: string) => {
+    return apiCall(url, { method: "GET" });
+  },
   post: async <T>(url: string, config?: Omit<Config<T>, "method">) => {
     return apiCall(url, { ...config, method: "POST" });
   },
-  get: (url: string) => {
-    return apiCall(url, { method: "GET" });
+  patch: async <T>(url: string, config?: Omit<Config<T>, "method">) => {
+    return apiCall(url, { ...config, method: "PATCH" });
   },
 };

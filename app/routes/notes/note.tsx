@@ -1,13 +1,9 @@
-import { lazy } from "react";
+import { lazy, Suspense } from "react";
 import SkeletonLoader from "~/components/loader/skeletonLoader";
 import type { Note } from "~/queries/notes/types";
 import { NavLink, useParams } from "react-router";
 import { useQueryNote } from "~/queries/notes/notes";
 import NoteComponent from "~/modules/notes/note";
-
-const NoteEditor = lazy(
-  () => import("~/components/richTextEditor/richTextEditor")
-);
 
 const Note = () => {
   let params = useParams();
@@ -22,7 +18,15 @@ const Note = () => {
           Back
         </NavLink>
       </div>
-      {isLoading ? <SkeletonLoader /> : <NoteComponent note={note} />}
+      {isLoading ? (
+        <SkeletonLoader />
+      ) : note ? (
+        <Suspense fallback={<SkeletonLoader />}>
+          <NoteComponent note={note} />
+        </Suspense>
+      ) : (
+        "Note not found."
+      )}
     </div>
   );
 };

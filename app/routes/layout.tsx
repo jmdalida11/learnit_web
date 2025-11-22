@@ -12,8 +12,10 @@ const Layout = () => {
 
   return (
     <div>
-      <Navbar />
-      <div className="px-10 mt-5">
+      <div className="fixed top-0 left-0 w-full z-50">
+        <Navbar />
+      </div>
+      <div className="px-10 mt-20 mb-5">
         <Outlet />
         <ToastComponent toasts={toasts} />
         {isLoading && (

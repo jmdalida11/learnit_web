@@ -50,4 +50,7 @@ export const api = {
   patch: async <T>(url: string, config?: Omit<Config<T>, "method">) => {
     return apiCall(url, { ...config, method: "PATCH" });
   },
+  delete: async <T>(url: string, config?: Omit<Config<T>, "method">) => {
+    return apiCall(url, { ...config, method: "DELETE" });
+  },
 };

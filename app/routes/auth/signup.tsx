@@ -34,6 +34,8 @@ const Signup = () => {
   );
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    if (isLoading) return;
+
     try {
       setIsLoading(true);
 

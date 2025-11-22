@@ -8,6 +8,7 @@ import {
   MenuItems,
 } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "react-router";
 import { logoutRequest } from "~/api/auth";
 
@@ -22,10 +23,12 @@ function classNames(...classes: any[]) {
 
 export default function Navbar() {
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
   const logout = () => {
     logoutRequest()
       .then(() => {
+        queryClient.clear();
         navigate("/login");
       })
       .catch((e) => {
@@ -36,7 +39,7 @@ export default function Navbar() {
   return (
     <Disclosure
       as="nav"
-      className="relative bg-gray-800/50 after:pointer-events-none after:absolute after:inset-x-0 after:bottom-0 after:h-px after:bg-white/10"
+      className="relative bg-gray-800 after:pointer-events-none after:absolute after:inset-x-0 after:bottom-0 after:h-px after:bg-white/10"
     >
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
         <div className="relative flex h-16 items-center justify-between">

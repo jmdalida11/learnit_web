@@ -28,6 +28,8 @@ export default function Login() {
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    if (isLoading) return;
+
     try {
       setIsLoading(true);
       await loginRequest(data);

@@ -3,7 +3,9 @@ import { lazy, useState } from "react";
 import { updateNoteRequest } from "~/api/notes";
 import { NoteQueryKey, type Note } from "~/queries/notes/types";
 import useLoadingStore from "~/store/useLoadingStore";
+import useNoteStore from "~/store/useNoteStore";
 import useToastStore from "~/store/useToastStore";
+import DeleteNoteDialog from "./deleteNoteDialog";
 
 const NoteEditor = lazy(
   () => import("~/components/richTextEditor/richTextEditor")
@@ -16,6 +18,7 @@ interface NoteProps {
 const NoteComponent = ({ note }: NoteProps) => {
   const { setLoading } = useLoadingStore();
   const { addToast } = useToastStore();
+  const { openDeleteDialog } = useNoteStore();
   const queryClient = useQueryClient();
   const [editorValue, setEditorValue] = useState(note.content);
 
@@ -39,6 +42,10 @@ const NoteComponent = ({ note }: NoteProps) => {
     }
   };
 
+  const handleDeleteNote = async () => {
+    openDeleteDialog();
+  };
+
   return (
     <div>
       <div className="mb-5">
@@ -49,7 +56,11 @@ const NoteComponent = ({ note }: NoteProps) => {
         <button className="btn btn-primary" onClick={handleSaveNote}>
           Save
         </button>
+        <button className="btn btn-error ml-1" onClick={handleDeleteNote}>
+          Delete
+        </button>
       </div>
+      <DeleteNoteDialog noteId={note.id} />
     </div>
   );
 };

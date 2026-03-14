@@ -54,7 +54,7 @@ const NoteComponent = ({ note }: NoteProps) => {
       <NoteEditor
         value={editorValue}
         setValue={setEditorValue}
-        placeholder="Add your note here!"
+        placeholder="Write your note here!"
         className="bg-[#E8E4C9] text-black"
       />
       <div className="py-3 flex justify-end">

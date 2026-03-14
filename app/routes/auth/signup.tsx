@@ -30,7 +30,7 @@ const Signup = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [toastStatus, setToastStatus] = useState<"success" | "error">(
-    "success"
+    "success",
   );
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
@@ -60,14 +60,14 @@ const Signup = () => {
             className={cn(
               `w-full flex justify-center bg-error`,
               toastStatus === "success" && "bg-success",
-              toastStatus === "error" && "bg-red-500"
+              toastStatus === "error" && "bg-red-500",
             )}
           >
             {toastMessage}
           </div>
         )}
         <div className="card-body">
-          <h2 className="card-title">Sign up</h2>
+          <h2 className="card-title">LearnIt Sign up</h2>
           <div>
             <FormInput
               label={"Username"}
@@ -109,14 +109,14 @@ const Signup = () => {
             />
           </div>
           <div className="card-actions">
-            <button className="btn btn-active w-full" type="submit">
+            <button className="btn hover:btn-active w-full" type="submit">
               {isLoading ? (
                 <span className="loading loading-dots loading-xl"></span>
               ) : (
                 "Create Account"
               )}
             </button>
-            <NavLink to="/login" className="btn btn-active w-full">
+            <NavLink to="/login" className="btn hover:btn-active w-full">
               Login
             </NavLink>
           </div>

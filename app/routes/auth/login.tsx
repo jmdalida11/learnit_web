@@ -51,7 +51,7 @@ export default function Login() {
           </div>
         )}
         <div className="card-body">
-          <h2 className="card-title">Login</h2>
+          <h2 className="card-title">LearnIt Login</h2>
           <FormInput
             label={"Username"}
             {...register("username", {
@@ -68,14 +68,14 @@ export default function Login() {
             error={errors?.password}
           />
           <div className="card-actions">
-            <button className="btn btn-active w-full" type="submit">
+            <button className="btn hover:btn-active w-full" type="submit">
               {isLoading ? (
                 <span className="loading loading-dots loading-xl"></span>
               ) : (
                 "Login"
               )}
             </button>
-            <NavLink to="/signup" className="btn btn-active w-full">
+            <NavLink to="/signup" className="btn hover:btn-active w-full">
               Sign Up
             </NavLink>
           </div>

@@ -17,7 +17,7 @@ export const createNoteRequest = async (body: { title: string }) => {
 
 export const updateNoteRequest = async (
   noteId: string,
-  note: Pick<Note, "content">,
+  note: Pick<Note, "title" | "content">,
 ) => {
   const { csrfToken } = await getCsrfTokenRequest();
   return api.patch(`/note/${noteId}`, { csrfToken, body: { ...note } });

@@ -1,5 +1,5 @@
 import { useQueryClient } from "@tanstack/react-query";
-import { lazy, useState } from "react";
+import { lazy, useEffect, useRef, useState } from "react";
 import { updateNoteRequest } from "~/api/notes";
 import { NoteQueryKey, type Note } from "~/queries/notes/types";
 import useLoadingStore from "~/store/useLoadingStore";
@@ -19,13 +19,17 @@ const NoteComponent = ({ note }: NoteProps) => {
   const { setLoading } = useLoadingStore();
   const { addToast } = useToastStore();
   const { openDeleteDialog } = useNoteStore();
+
   const queryClient = useQueryClient();
+
   const [editorValue, setEditorValue] = useState(note.content);
+  const titleRef = useRef<HTMLInputElement | null>(null);
 
   const handleSaveNote = async () => {
     setLoading(true);
     try {
       const { message } = await updateNoteRequest(note.id, {
+        title: titleRef.current?.value || note.title,
         content: editorValue,
       });
       queryClient.invalidateQueries({
@@ -46,10 +50,19 @@ const NoteComponent = ({ note }: NoteProps) => {
     openDeleteDialog();
   };
 
+  useEffect(() => {
+    if (titleRef.current) {
+      titleRef.current.value = note.title;
+    }
+  }, [note]);
+
   return (
     <div>
       <div className="mb-5">
-        <h1 className="font-extrabold font-mono text-3xl">{note.title}</h1>
+        <input
+          ref={titleRef}
+          className="ont-extrabold font-mono text-3xl w-full"
+        />
       </div>
       <NoteEditor
         value={editorValue}

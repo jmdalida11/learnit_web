@@ -8,7 +8,7 @@ import useToastStore from "~/store/useToastStore";
 import DeleteNoteDialog from "./deleteNoteDialog";
 
 const NoteEditor = lazy(
-  () => import("~/components/richTextEditor/richTextEditor")
+  () => import("~/components/richTextEditor/richTextEditor"),
 );
 
 interface NoteProps {
@@ -51,7 +51,12 @@ const NoteComponent = ({ note }: NoteProps) => {
       <div className="mb-5">
         <h1 className="font-extrabold font-mono text-3xl">{note.title}</h1>
       </div>
-      <NoteEditor value={editorValue} setValue={setEditorValue} />
+      <NoteEditor
+        value={editorValue}
+        setValue={setEditorValue}
+        placeholder="Add your note here!"
+        className="bg-[#E8E4C9] text-black"
+      />
       <div className="py-3 flex justify-end">
         <button className="btn btn-primary" onClick={handleSaveNote}>
           Save

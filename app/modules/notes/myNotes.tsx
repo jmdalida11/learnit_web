@@ -72,17 +72,9 @@ const MyNotes = () => {
               </h2>
               <pre className="whitespace-pre-wrap text-sm text-black">
                 {note.content.length > 100 ? (
-                  <>
-                    <div className="line-clamp-3">
-                      {getPlainText(note.content.slice(0, 330))}
-                    </div>
-                    <NavLink
-                      to={`note/${note.id}`}
-                      className="text-accent-content"
-                    >
-                      ...continue reading
-                    </NavLink>
-                  </>
+                  <div className="line-clamp-3">
+                    {getPlainText(note.content.slice(0, 330))}
+                  </div>
                 ) : (
                   getPlainText(note.content)
                 )}

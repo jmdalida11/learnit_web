@@ -35,13 +35,12 @@ const CreateNoteDialog = () => {
   const onSubmit = async (data: { title: string }) => {
     try {
       setLoading(true);
-      const { message, id } = await createNoteRequest(data);
+      const { id } = await createNoteRequest(data);
       queryClient.invalidateQueries({
         queryKey: [NoteQueryKey.Notes],
       });
       closeCreateDialog();
       reset();
-      addToast(message, "success");
       navigate(`/note/${id}`);
     } catch (error: any) {
       addToast(error.message, "error");

@@ -43,7 +43,7 @@ export default function Login() {
   };
 
   return (
-    <form method="POST" onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <div className="card-lg w-96 bg-base-200 shadow-lg">
         {toastMessage && (
           <div className={`w-full flex justify-center bg-red-500`}>

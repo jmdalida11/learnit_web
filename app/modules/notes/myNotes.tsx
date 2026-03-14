@@ -12,6 +12,15 @@ const getPlainText = (html: string) => {
     .trim();
 };
 
+const notesColorPalette = [
+  "#F4617C", // Mild Red (Warm)
+  "#C3A8DF", // Mild Violet (Cool)
+  "#D1CFDB", // Mild Gray (Neutral)
+  "#9AB2EA", // Mild Blue (Cool)
+  "#B0E7A3", // Mild Green (Fresh)
+  "#FFD06D", // Mild Gold (Accent)
+];
+
 const MyNotes = () => {
   const { data: notes = [], isLoading } = useQueryNotes();
 
@@ -21,16 +30,19 @@ const MyNotes = () => {
 
   return (
     <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 auto-rows-fr">
-      {notes.map((note) => (
+      {notes.map((note, idx) => (
         <div
           key={note.id}
-          className="card bg-primary shadow-sm hover:shadow-md transition-shadow duration-200 m-0"
+          className="card shadow-sm hover:shadow-md transition-shadow duration-200 m-0"
+          style={{
+            backgroundColor: notesColorPalette[idx % notesColorPalette.length],
+          }}
         >
           <div className="card-body">
-            <h2 className="card-title">
+            <h2 className="card-title text-black">
               <NavLink to={`note/${note.id}`}>{note.title}</NavLink>
             </h2>
-            <pre className="whitespace-pre-wrap text-sm">
+            <pre className="whitespace-pre-wrap text-sm text-black">
               {note.content.length > 100 ? (
                 <>
                   <span>{getPlainText(note.content.slice(0, 330))}</span>

@@ -68,14 +68,20 @@ export default function Login() {
             error={errors?.password}
           />
           <div className="card-actions">
-            <button className="btn hover:btn-active w-full" type="submit">
+            <button
+              className="btn bg-base-100 hover:btn-active hover:bg-base-200 w-full"
+              type="submit"
+            >
               {isLoading ? (
                 <span className="loading loading-dots loading-xl"></span>
               ) : (
                 "Login"
               )}
             </button>
-            <NavLink to="/signup" className="btn hover:btn-active w-full">
+            <NavLink
+              to="/signup"
+              className="btn bg-base-100 hover:btn-active hover:bg-base-200 w-full "
+            >
               Sign Up
             </NavLink>
           </div>

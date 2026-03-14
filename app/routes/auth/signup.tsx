@@ -109,14 +109,20 @@ const Signup = () => {
             />
           </div>
           <div className="card-actions">
-            <button className="btn hover:btn-active w-full" type="submit">
+            <button
+              className="btn bg-base-100 hover:btn-active hover:bg-base-200 w-full"
+              type="submit"
+            >
               {isLoading ? (
                 <span className="loading loading-dots loading-xl"></span>
               ) : (
                 "Create Account"
               )}
             </button>
-            <NavLink to="/login" className="btn hover:btn-active w-full">
+            <NavLink
+              to="/login"
+              className="btn bg-base-100 hover:btn-active hover:bg-base-200 w-full"
+            >
               Login
             </NavLink>
           </div>

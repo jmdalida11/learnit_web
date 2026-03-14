@@ -12,9 +12,13 @@ const FormInput = ({ label, error, ...props }: FormInputProps) => {
     <fieldset className="fieldset">
       <legend className="fieldset-legend text-base">{label}</legend>
       <input
-        className={cn("input w-full", !!error && "input-error")}
         autoComplete={props?.name}
         {...props}
+        className={cn(
+          "input w-full",
+          props.className,
+          !!error && "input-error",
+        )}
       />
       <p className={"label text-red-500"}>{error?.message}</p>
     </fieldset>

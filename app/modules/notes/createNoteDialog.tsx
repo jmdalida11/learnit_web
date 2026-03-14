@@ -74,10 +74,11 @@ const CreateNoteDialog = () => {
                   required: "This is required",
                 })}
                 error={errors.title}
+                className="bg-white text-black"
               />
               <div className="mt-4 flex justify-end gap-2">
                 <Button
-                  className="inline-flex items-center gap-2 rounded-md bg-gray-800 px-4 py-2 text-sm font-semibold text-white hover:bg-gray-700"
+                  className="inline-flex items-center gap-2 rounded-md btn btn-primary px-4 py-2 text-sm font-semibold text-white"
                   type="submit"
                   disabled={isLoading}
                 >
@@ -88,7 +89,7 @@ const CreateNoteDialog = () => {
                   )}
                 </Button>
                 <Button
-                  className="inline-flex items-center gap-2 rounded-md bg-gray-800 px-4 py-2 text-sm font-semibold text-white hover:bg-gray-700"
+                  className="inline-flex items-center gap-2 rounded-md btn px-4 py-2 text-sm font-semibold text-white hover:bg-gray-700"
                   onClick={() => {
                     closeCreateDialog();
                     reset();

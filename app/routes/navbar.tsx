@@ -9,12 +9,12 @@ import {
 } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useQueryClient } from "@tanstack/react-query";
-import { useNavigate } from "react-router";
+import { NavLink, useNavigate } from "react-router";
 import { logoutRequest } from "~/api/auth";
 
 const navigation = [
-  { name: "Notes", href: "#", current: true },
-  { name: "Quizzes", href: "#", current: false },
+  { name: "Notes", path: "/", current: true },
+  { name: "Quizzes", path: "#", current: false },
 ];
 
 function classNames(...classes: any[]) {
@@ -39,7 +39,7 @@ export default function Navbar() {
   return (
     <Disclosure
       as="nav"
-      className="relative bg-gray-800 after:pointer-events-none after:absolute after:inset-x-0 after:bottom-0 after:h-px after:bg-white/10"
+      className="w-full bg-gray-800 after:pointer-events-none after:absolute after:inset-x-0 after:bottom-0 after:h-px after:bg-white/10"
     >
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
         <div className="relative flex h-16 items-center justify-between">
@@ -65,19 +65,21 @@ export default function Navbar() {
             <div className="hidden sm:ml-6 sm:block">
               <div className="flex space-x-4">
                 {navigation.map((item) => (
-                  <a
-                    key={item.name}
-                    href={item.href}
-                    aria-current={item.current ? "page" : undefined}
-                    className={classNames(
-                      item.current
-                        ? "bg-gray-950/50 text-white"
-                        : "text-gray-300 hover:bg-white/5 hover:text-white",
-                      "rounded-md px-3 py-2 text-sm font-medium"
-                    )}
-                  >
-                    {item.name}
-                  </a>
+                  <>
+                    <NavLink
+                      key={item.name}
+                      to={item.path}
+                      aria-current={item.current ? "page" : undefined}
+                      className={classNames(
+                        item.current
+                          ? "bg-gray-950/50 text-white"
+                          : "text-gray-300 hover:bg-white/5 hover:text-white",
+                        "rounded-md px-3 py-2 text-sm font-medium",
+                      )}
+                    >
+                      {item.name}
+                    </NavLink>
+                  </>
                 ))}
               </div>
             </div>
@@ -99,7 +101,7 @@ export default function Navbar() {
                 <span className="sr-only">Open user menu</span>
                 <img
                   alt=""
-                  src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                  src="https://uxwing.com/wp-content/themes/uxwing/download/peoples-avatars/default-avatar-profile-picture-male-icon.png"
                   className="size-8 rounded-full bg-gray-800 outline -outline-offset-1 outline-white/10"
                 />
               </MenuButton>
@@ -142,20 +144,19 @@ export default function Navbar() {
       <DisclosurePanel className="sm:hidden">
         <div className="space-y-1 px-2 pt-2 pb-3">
           {navigation.map((item) => (
-            <DisclosureButton
+            <NavLink
               key={item.name}
-              as="a"
-              href={item.href}
+              to={item.path}
               aria-current={item.current ? "page" : undefined}
               className={classNames(
                 item.current
                   ? "bg-gray-950/50 text-white"
                   : "text-gray-300 hover:bg-white/5 hover:text-white",
-                "block rounded-md px-3 py-2 text-base font-medium"
+                "block rounded-md px-3 py-2 text-base font-medium",
               )}
             >
               {item.name}
-            </DisclosureButton>
+            </NavLink>
           ))}
         </div>
       </DisclosurePanel>

@@ -62,6 +62,11 @@ const NoteComponent = ({ note }: NoteProps) => {
         <input
           ref={titleRef}
           className="ont-extrabold font-mono text-3xl w-full"
+          onBlur={() => {
+            if (titleRef.current?.value === "") {
+              titleRef.current.value = note.title;
+            }
+          }}
         />
       </div>
       <NoteEditor

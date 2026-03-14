@@ -13,11 +13,6 @@ const Note = () => {
 
   return (
     <div>
-      <div className="mb-5">
-        <NavLink to="/" className="btn hover:btn-active">
-          Back
-        </NavLink>
-      </div>
       {isLoading ? (
         <SkeletonLoader />
       ) : note ? (

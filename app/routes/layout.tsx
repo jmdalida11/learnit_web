@@ -11,11 +11,9 @@ const Layout = () => {
   const { toasts } = useToastStore();
 
   return (
-    <>
-      <div className="fixed top-0 left-0 w-full z-50">
-        <Navbar />
-      </div>
-      <div className="px-10 mt-20 mb-5">
+    <div className="h-screen flex flex-col overflow-hidden">
+      <Navbar />
+      <div className="flex-1 px-5 md:px-10 my-5 overflow-y-auto">
         <Outlet />
         <ToastComponent toasts={toasts} />
         {isLoading && (
@@ -24,7 +22,7 @@ const Layout = () => {
           </div>
         )}
       </div>
-    </>
+    </div>
   );
 };
 

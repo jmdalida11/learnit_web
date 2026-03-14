@@ -5,7 +5,7 @@ export default function Home() {
   const { openCreateDialog } = useNoteStore();
 
   return (
-    <div className="mt-5">
+    <div>
       <button className="btn hover:btn-active" onClick={openCreateDialog}>
         Add new note
       </button>

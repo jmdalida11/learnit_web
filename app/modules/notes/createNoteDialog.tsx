@@ -7,7 +7,6 @@ import {
 } from "@headlessui/react";
 import { useQueryClient } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router";
 import { createNoteRequest } from "~/api/notes";
 import FormInput from "~/components/inputs/formInput";
 import { NoteQueryKey } from "~/queries/notes/types";
@@ -18,7 +17,6 @@ const CreateNoteDialog = () => {
   const { addToast } = useToastStore();
   const { isCreateDialogOpen, isLoading, closeCreateDialog, setLoading } =
     useNoteStore();
-  const navigate = useNavigate();
   const queryClient = useQueryClient();
 
   const {
@@ -35,13 +33,13 @@ const CreateNoteDialog = () => {
   const onSubmit = async (data: { title: string }) => {
     try {
       setLoading(true);
-      const { id } = await createNoteRequest(data);
+      const { message } = await createNoteRequest(data);
       queryClient.invalidateQueries({
         queryKey: [NoteQueryKey.Notes],
       });
       closeCreateDialog();
       reset();
-      navigate(`/note/${id}`);
+      addToast(message, "success");
     } catch (error: any) {
       addToast(error.message, "error");
     } finally {
@@ -60,7 +58,7 @@ const CreateNoteDialog = () => {
         transition
         className="fixed inset-0 z-0 bg-black/50  transition-opacity duration-300 ease-out data-closed:opacity-0"
       />
-      <form method="POST" onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
           <div className="flex min-h-full items-center justify-center p-4">
             <DialogPanel

@@ -2,8 +2,8 @@ import type { Note } from "~/queries/notes/types";
 import { api } from "./api";
 import { getCsrfTokenRequest } from "./auth";
 
-export const getAllMyNotesRequest = () => {
-  return api.get("/note");
+export const getAllMyNotesRequest = (page: number, pageSize: number) => {
+  return api.get(`/note?page=${page}&pageSize=${pageSize}`);
 };
 
 export const getNoteByIdRequest = (noteId: string) => {
@@ -17,7 +17,7 @@ export const createNoteRequest = async (body: { title: string }) => {
 
 export const updateNoteRequest = async (
   noteId: string,
-  note: Pick<Note, "content">
+  note: Pick<Note, "content">,
 ) => {
   const { csrfToken } = await getCsrfTokenRequest();
   return api.patch(`/note/${noteId}`, { csrfToken, body: { ...note } });

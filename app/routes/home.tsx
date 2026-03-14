@@ -6,7 +6,7 @@ export default function Home() {
 
   return (
     <div className="mt-5">
-      <button className="btn" onClick={openCreateDialog}>
+      <button className="btn hover:btn-active" onClick={openCreateDialog}>
         Add new note
       </button>
       <div className="mt-5">

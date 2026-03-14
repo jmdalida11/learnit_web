@@ -11,7 +11,7 @@ const Layout = () => {
   const { toasts } = useToastStore();
 
   return (
-    <div>
+    <>
       <div className="fixed top-0 left-0 w-full z-50">
         <Navbar />
       </div>
@@ -24,7 +24,7 @@ const Layout = () => {
           </div>
         )}
       </div>
-    </div>
+    </>
   );
 };
 

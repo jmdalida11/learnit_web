@@ -14,12 +14,18 @@ const getPlainText = (html: string) => {
 };
 
 const notesColorPalette = [
-  "#F4617C", // Mild Red (Warm)
-  "#C3A8DF", // Mild Violet (Cool)
-  "#D1CFDB", // Mild Gray (Neutral)
-  "#9AB2EA", // Mild Blue (Cool)
-  "#B0E7A3", // Mild Green (Fresh)
-  "#FFD06D", // Mild Gold (Accent)
+  "#F4617C", // Mild Red
+  "#FF9E80", // Mild Coral
+  "#FFD06D", // Mild Gold
+  "#FFCC80", // Mild Amber
+  "#B0E7A3", // Mild Green
+  "#C2F0CB", // Mild Mint
+  "#81E1D7", // Mild Teal
+  "#9AB2EA", // Mild Blue
+  "#8A94E5", // Mild Indigo
+  "#C3A8DF", // Mild Violet
+  "#F8BBD0", // Mild Rose
+  "#D1CFDB", // Mild Gray
 ];
 
 const MyNotes = () => {

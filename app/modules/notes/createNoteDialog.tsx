@@ -75,6 +75,7 @@ const CreateNoteDialog = () => {
                 })}
                 error={errors.title}
                 className="bg-white text-black"
+                autoFocus
               />
               <div className="mt-4 flex justify-end gap-2">
                 <Button

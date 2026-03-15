@@ -40,7 +40,7 @@ const MyNotes = () => {
           fetchNextPage();
         }
       },
-      { threshold: 1.0 },
+      { threshold: 0.1, rootMargin: "200px" },
     );
 
     if (observerRef.current) {
@@ -91,8 +91,19 @@ const MyNotes = () => {
           </div>
         ))}
       </div>
-      <div ref={observerRef} className="w-full flex justify-center mt-3">
-        {isFetchingNextPage && "Loading more..."}
+      <div ref={observerRef} className="w-full flex justify-center mt-8">
+        {isFetchingNextPage ? (
+          <span className="loading loading-dots loading-md"></span>
+        ) : hasNextPage ? (
+          <button
+            onClick={() => fetchNextPage()}
+            className="btn btn-ghost btn-sm"
+          >
+            Load More
+          </button>
+        ) : (
+          <p className="text-gray-500">No more notes to show</p>
+        )}
       </div>
       <CreateNoteDialog />
     </>

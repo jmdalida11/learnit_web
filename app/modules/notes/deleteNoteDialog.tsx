@@ -4,7 +4,7 @@ import {
   DialogPanel,
   DialogTitle,
 } from "@headlessui/react";
-import { deleteNoteRequest } from "~/api/notes";
+import { deleteNoteRequest } from "~/api/note";
 import { useNavigate } from "react-router";
 import useNoteStore from "~/store/useNoteStore";
 import useLoadingStore from "~/store/useLoadingStore";

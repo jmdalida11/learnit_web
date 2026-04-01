@@ -3,7 +3,7 @@ export enum NoteQueryKey {
   Note = "Note",
 }
 
-export type Note = {
+export interface Note {
   id: string;
   title: string;
   content: string;
@@ -11,4 +11,4 @@ export type Note = {
   isShared: boolean;
   createdAt: string;
   updatedAt: string;
-};
+}

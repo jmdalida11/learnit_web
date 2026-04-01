@@ -1,3 +1,4 @@
+import { Button } from "@headlessui/react";
 import MyNotes from "~/modules/notes/myNotes";
 import useNoteStore from "~/store/useNoteStore";
 
@@ -6,12 +7,12 @@ export default function Home() {
 
   return (
     <div>
-      <button
+      <Button
         className="btn hover:btn-active hover:bg-base-100"
         onClick={openCreateDialog}
       >
         Add new note
-      </button>
+      </Button>
       <div className="mt-5">
         <MyNotes />
       </div>

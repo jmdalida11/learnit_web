@@ -7,7 +7,7 @@ import {
 } from "@headlessui/react";
 import { useQueryClient } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
-import { createNoteRequest } from "~/api/notes";
+import { createNoteRequest } from "~/api/note";
 import FormInput from "~/components/input/formInput";
 import { NoteQueryKey } from "~/queries/notes/types";
 import useNoteStore from "~/store/useNoteStore";

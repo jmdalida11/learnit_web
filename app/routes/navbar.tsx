@@ -7,7 +7,12 @@ import {
   MenuItem,
   MenuItems,
 } from "@headlessui/react";
-import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import {
+  Bars3Icon,
+  BellIcon,
+  BookOpenIcon,
+  XMarkIcon,
+} from "@heroicons/react/24/outline";
 import { useQueryClient } from "@tanstack/react-query";
 import { NavLink, useNavigate, useLocation } from "react-router";
 import { logoutRequest } from "~/api/auth";
@@ -66,7 +71,9 @@ export default function Navbar() {
           </div>
           <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
             <div className="flex shrink-0 items-center">
-              <h1 className="font-bold">LearnIt!</h1>
+              <h1 className="font-bold flex gap-1">
+                <span>Learnit</span> <BookOpenIcon className="size-6" />
+              </h1>
             </div>
             <div className="hidden sm:ml-6 sm:block">
               <div className="flex space-x-4">

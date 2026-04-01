@@ -6,6 +6,7 @@ import FormInput from "~/components/input/formInput";
 import { useNavigate } from "react-router";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import BookOpenIcon from "@heroicons/react/24/outline/BookOpenIcon";
 
 const loginSchema = z.object({
   username: z.string().trim().min(1, "Username is required"),
@@ -52,7 +53,9 @@ export default function Login() {
           </div>
         )}
         <div className="card-body">
-          <h2 className="card-title">LearnIt Login</h2>
+          <h2 className="card-title">
+            <BookOpenIcon className="size-6" /> Learnit Login
+          </h2>
           <FormInput
             label={"Username"}
             {...register("username")}

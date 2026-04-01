@@ -67,7 +67,7 @@ const MyNotes = () => {
             }}
           >
             <div className="card-body">
-              <h2 className="card-title text-black">
+              <h2 className="card-title text-black truncate">
                 <NavLink to={`note/${note.id}`}>{note.title}</NavLink>
               </h2>
               <pre className="whitespace-pre-wrap text-sm text-black">

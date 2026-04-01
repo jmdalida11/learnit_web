@@ -1,6 +1,6 @@
 import { useQueryClient } from "@tanstack/react-query";
 import { lazy, useEffect, useRef, useState } from "react";
-import { updateNoteRequest } from "~/api/notes";
+import { updateNoteRequest } from "~/api/note";
 import { NoteQueryKey, type Note } from "~/queries/notes/types";
 import useLoadingStore from "~/store/useLoadingStore";
 import useNoteStore from "~/store/useNoteStore";

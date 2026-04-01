@@ -1,6 +1,6 @@
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import { NoteQueryKey, type Note } from "./types";
-import { getAllMyNotesRequest, getNoteByIdRequest } from "~/api/notes";
+import { getAllMyNotesRequest, getNoteByIdRequest } from "~/api/note";
 
 export const useQueryNotes = () => {
   const PAGE_SIZE = 12;

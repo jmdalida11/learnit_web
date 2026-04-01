@@ -1,3 +1,4 @@
+import BookOpenIcon from "@heroicons/react/24/outline/BookOpenIcon";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useForm, type SubmitHandler } from "react-hook-form";
@@ -78,7 +79,9 @@ const Signup = () => {
           </div>
         )}
         <div className="card-body">
-          <h2 className="card-title">LearnIt Sign up</h2>
+          <h2 className="card-title">
+            <BookOpenIcon className="size-6" /> Learnit Sign up
+          </h2>
           <div>
             <FormInput
               label={"Username"}

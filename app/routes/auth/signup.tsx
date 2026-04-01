@@ -1,16 +1,32 @@
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { NavLink } from "react-router";
+import z from "zod";
 import { signUpRequest } from "~/api/auth";
-import FormInput from "~/components/inputs/formInput";
+import FormInput from "~/components/input/formInput";
 import { cn } from "~/utils/cn";
 
-type Inputs = {
-  username: string;
-  password: string;
-  name: string;
-  email: string;
-};
+const signUpSchema = z.object({
+  username: z
+    .string()
+    .min(1, "Username is required")
+    .min(3, "Minimum length is 3")
+    .max(30, "Maximum length is 30"),
+  password: z
+    .string()
+    .min(1, "Password is required")
+    .min(8, "Minimum length is 8")
+    .max(30, "Maximum length is 30")
+    .regex(/^\S*$/, "Space is not allowed"),
+  name: z.string().min(1, "Name is required").max(255, "Maximum length is 255"),
+  email: z
+    .string()
+    .min(1, "Email is required")
+    .pipe(z.email("Invalid email address")),
+});
+
+type SignUpFormData = z.infer<typeof signUpSchema>;
 
 const Signup = () => {
   const {
@@ -18,13 +34,8 @@ const Signup = () => {
     formState: { errors },
     register,
     reset,
-  } = useForm<Inputs>({
-    defaultValues: {
-      username: "",
-      password: "",
-      name: "",
-      email: "",
-    },
+  } = useForm<SignUpFormData>({
+    resolver: zodResolver(signUpSchema),
   });
 
   const [isLoading, setIsLoading] = useState(false);
@@ -33,7 +44,7 @@ const Signup = () => {
     "success",
   );
 
-  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+  const onSubmit: SubmitHandler<SignUpFormData> = async (data) => {
     if (isLoading) return;
 
     try {
@@ -71,40 +82,27 @@ const Signup = () => {
           <div>
             <FormInput
               label={"Username"}
-              {...register("username", {
-                required: "Username is required",
-                minLength: { value: 3, message: "Minimum length is 3" },
-                maxLength: { value: 30, message: "Maximum length is 30" },
-              })}
+              {...register("username")}
               error={errors?.username}
             />
 
             <FormInput
               label={"Password"}
-              {...register("password", {
-                required: "Password is required",
-                minLength: { value: 8, message: "Minimum length is 8" },
-                maxLength: { value: 30, message: "Maximum length is 30" },
-              })}
+              {...register("password")}
               type="password"
               error={errors?.password}
             />
 
             <FormInput
               label={"Name"}
-              {...register("name", {
-                required: "Name is required",
-                maxLength: { value: 255, message: "Maximum length is 255" },
-              })}
+              {...register("name")}
               error={errors?.name}
             />
 
             <FormInput
               label={"Email"}
               type="email"
-              {...register("email", {
-                required: "Email is required",
-              })}
+              {...register("email")}
               error={errors?.email}
             />
           </div>

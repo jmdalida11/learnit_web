@@ -2,13 +2,17 @@ import { useState } from "react";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { NavLink } from "react-router";
 import { loginRequest } from "~/api/auth";
-import FormInput from "~/components/inputs/formInput";
+import FormInput from "~/components/input/formInput";
 import { useNavigate } from "react-router";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 
-type Inputs = {
-  username: string;
-  password: string;
-};
+const loginSchema = z.object({
+  username: z.string().trim().min(1, "Username is required"),
+  password: z.string().min(1, "Password is required"),
+});
+
+type LoginFormData = z.infer<typeof loginSchema>;
 
 export default function Login() {
   const navigate = useNavigate();
@@ -17,17 +21,14 @@ export default function Login() {
     handleSubmit,
     formState: { errors },
     register,
-  } = useForm<Inputs>({
-    defaultValues: {
-      username: "",
-      password: "",
-    },
+  } = useForm<LoginFormData>({
+    resolver: zodResolver(loginSchema),
   });
 
   const [isLoading, setIsLoading] = useState(false);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
-  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+  const onSubmit: SubmitHandler<LoginFormData> = async (data) => {
     if (isLoading) return;
 
     try {
@@ -54,16 +55,12 @@ export default function Login() {
           <h2 className="card-title">LearnIt Login</h2>
           <FormInput
             label={"Username"}
-            {...register("username", {
-              required: "Username is required",
-            })}
+            {...register("username")}
             error={errors?.username}
           />
           <FormInput
             label={"Password"}
-            {...register("password", {
-              required: "Password is required",
-            })}
+            {...register("password")}
             type="password"
             error={errors?.password}
           />

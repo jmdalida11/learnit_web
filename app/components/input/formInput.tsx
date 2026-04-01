@@ -1,3 +1,4 @@
+import { Field, Input, Label } from "@headlessui/react";
 import type { ComponentProps } from "react";
 import type { FieldError } from "react-hook-form";
 import { cn } from "~/utils/cn";
@@ -9,9 +10,9 @@ interface FormInputProps extends ComponentProps<"input"> {
 
 const FormInput = ({ label, error, ...props }: FormInputProps) => {
   return (
-    <fieldset className="fieldset">
-      <legend className="fieldset-legend text-base">{label}</legend>
-      <input
+    <Field className="fieldset">
+      <Label className="fieldset-legend text-base">{label}</Label>
+      <Input
         autoComplete={props?.name}
         {...props}
         className={cn(
@@ -21,7 +22,7 @@ const FormInput = ({ label, error, ...props }: FormInputProps) => {
         )}
       />
       <p className={"label text-red-500"}>{error?.message}</p>
-    </fieldset>
+    </Field>
   );
 };
 

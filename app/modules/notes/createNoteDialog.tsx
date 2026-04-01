@@ -8,7 +8,7 @@ import {
 import { useQueryClient } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import { createNoteRequest } from "~/api/notes";
-import FormInput from "~/components/inputs/formInput";
+import FormInput from "~/components/input/formInput";
 import { NoteQueryKey } from "~/queries/notes/types";
 import useNoteStore from "~/store/useNoteStore";
 import useToastStore from "~/store/useToastStore";

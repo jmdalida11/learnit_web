@@ -9,12 +9,17 @@ import {
 } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useQueryClient } from "@tanstack/react-query";
-import { NavLink, useNavigate } from "react-router";
+import { NavLink, useNavigate, useLocation } from "react-router";
 import { logoutRequest } from "~/api/auth";
 
-const navigation = [
-  { name: "Notes", path: "/", current: true },
-  { name: "Quizzes", path: "#", current: false },
+enum PagePath {
+  Notes = "Notes",
+  Quiz = "Quiz",
+}
+
+const navigation: Array<{ name: PagePath; path: string; basePath?: string }> = [
+  { name: PagePath.Notes, path: "/", basePath: "/note" },
+  { name: PagePath.Quiz, path: "/quiz", basePath: "/quiz" },
 ];
 
 function classNames(...classes: any[]) {
@@ -23,6 +28,7 @@ function classNames(...classes: any[]) {
 
 export default function Navbar() {
   const navigate = useNavigate();
+  const location = useLocation();
   const queryClient = useQueryClient();
 
   const logout = () => {
@@ -65,21 +71,24 @@ export default function Navbar() {
             <div className="hidden sm:ml-6 sm:block">
               <div className="flex space-x-4">
                 {navigation.map((item) => (
-                  <>
-                    <NavLink
-                      key={item.name}
-                      to={item.path}
-                      aria-current={item.current ? "page" : undefined}
-                      className={classNames(
-                        item.current
+                  <NavLink
+                    key={item.name}
+                    to={item.path}
+                    className={({ isActive }) => {
+                      const isActiveEnhanced =
+                        isActive ||
+                        (item.basePath &&
+                          location.pathname.startsWith(item.basePath));
+                      return classNames(
+                        isActiveEnhanced
                           ? "bg-gray-950/50 text-white"
                           : "text-gray-300 hover:bg-white/5 hover:text-white",
                         "rounded-md px-3 py-2 text-sm font-medium",
-                      )}
-                    >
-                      {item.name}
-                    </NavLink>
-                  </>
+                      );
+                    }}
+                  >
+                    {item.name}
+                  </NavLink>
                 ))}
               </div>
             </div>
@@ -147,13 +156,18 @@ export default function Navbar() {
             <NavLink
               key={item.name}
               to={item.path}
-              aria-current={item.current ? "page" : undefined}
-              className={classNames(
-                item.current
-                  ? "bg-gray-950/50 text-white"
-                  : "text-gray-300 hover:bg-white/5 hover:text-white",
-                "block rounded-md px-3 py-2 text-base font-medium",
-              )}
+              className={({ isActive }) => {
+                const isActiveEnhanced =
+                  isActive ||
+                  (item.basePath &&
+                    location.pathname.startsWith(item.basePath));
+                return classNames(
+                  isActiveEnhanced
+                    ? "bg-gray-950/50 text-white"
+                    : "text-gray-300 hover:bg-white/5 hover:text-white",
+                  "block rounded-md px-3 py-2 text-base font-medium",
+                );
+              }}
             >
               {item.name}
             </NavLink>

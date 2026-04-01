@@ -1,7 +1,7 @@
-import { lazy, Suspense } from "react";
+import { Suspense } from "react";
 import SkeletonLoader from "~/components/loader/skeletonLoader";
 import type { Note } from "~/queries/notes/types";
-import { NavLink, useParams } from "react-router";
+import { useParams } from "react-router";
 import { useQueryNote } from "~/queries/notes/notes";
 import NoteComponent from "~/modules/notes/note";
 

@@ -9,6 +9,7 @@ export default [
   layout("routes/layout.tsx", [
     index("routes/home.tsx"),
     route("note/:noteId", "routes/notes/note.tsx"),
+    route("quiz", "routes/quiz/quizzes.tsx"),
   ]),
 
   layout("routes/auth/layout.tsx", [

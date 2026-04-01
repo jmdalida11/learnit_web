@@ -6,7 +6,7 @@ import { useQueryNote } from "~/queries/notes/notes";
 import NoteComponent from "~/modules/notes/note";
 
 const Note = () => {
-  let params = useParams();
+  const params = useParams();
   const { data: note, isLoading } = useQueryNote({
     noteId: params["noteId"] as string,
   });

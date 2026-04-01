@@ -1,3 +1,4 @@
+import { Button } from "@headlessui/react";
 import BookOpenIcon from "@heroicons/react/24/outline/BookOpenIcon";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
@@ -110,7 +111,7 @@ const Signup = () => {
             />
           </div>
           <div className="card-actions">
-            <button
+            <Button
               className="btn bg-base-100 hover:btn-active hover:bg-base-200 w-full"
               type="submit"
             >
@@ -119,7 +120,7 @@ const Signup = () => {
               ) : (
                 "Create Account"
               )}
-            </button>
+            </Button>
             <NavLink
               to="/login"
               className="btn bg-base-100 hover:btn-active hover:bg-base-200 w-full"

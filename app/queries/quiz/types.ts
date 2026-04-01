@@ -1,6 +1,7 @@
 import type { Note } from "../notes/types";
 
 export enum QuizQueryKey {
+  Quiz = "Quiz",
   Quizzes = "Quizzes",
 }
 

@@ -11,7 +11,7 @@ export default function Home() {
         className="btn hover:btn-active hover:bg-base-100"
         onClick={openCreateDialog}
       >
-        Add new note
+        Add New Note
       </Button>
       <div className="mt-5">
         <MyNotes />

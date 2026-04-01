@@ -7,6 +7,7 @@ import { useNavigate } from "react-router";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import BookOpenIcon from "@heroicons/react/24/outline/BookOpenIcon";
+import { Button } from "@headlessui/react";
 
 const loginSchema = z.object({
   username: z.string().trim().min(1, "Username is required"),
@@ -68,7 +69,7 @@ export default function Login() {
             error={errors?.password}
           />
           <div className="card-actions">
-            <button
+            <Button
               className="btn bg-base-100 hover:btn-active hover:bg-base-200 w-full"
               type="submit"
             >
@@ -77,7 +78,7 @@ export default function Login() {
               ) : (
                 "Login"
               )}
-            </button>
+            </Button>
             <NavLink
               to="/signup"
               className="btn bg-base-100 hover:btn-active hover:bg-base-200 w-full "

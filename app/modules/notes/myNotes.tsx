@@ -3,6 +3,7 @@ import SkeletonLoader from "~/components/loader/skeletonLoader";
 import { useQueryNotes } from "~/queries/notes/notes";
 import CreateNoteDialog from "./createNoteDialog";
 import { useEffect, useRef } from "react";
+import { Button } from "@headlessui/react";
 
 const getPlainText = (html: string) => {
   return html
@@ -95,12 +96,12 @@ const MyNotes = () => {
         {isFetchingNextPage ? (
           <span className="loading loading-dots loading-md"></span>
         ) : hasNextPage ? (
-          <button
+          <Button
             onClick={() => fetchNextPage()}
             className="btn btn-ghost btn-sm"
           >
             Load More
-          </button>
+          </Button>
         ) : (
           <p className="text-gray-500">No more notes to show</p>
         )}

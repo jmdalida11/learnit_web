@@ -26,18 +26,20 @@ const NoteComponent = ({ note }: NoteProps) => {
   const titleRef = useRef<HTMLInputElement | null>(null);
 
   const handleSaveNote = async () => {
-    setLoading(true);
     try {
+      setLoading(true);
       const { message } = await updateNoteRequest(note.id, {
         title: titleRef.current?.value || note.title,
         content: editorValue,
       });
-      queryClient.invalidateQueries({
-        queryKey: [NoteQueryKey.Note],
-      });
-      queryClient.invalidateQueries({
-        queryKey: [NoteQueryKey.Notes],
-      });
+      Promise.all([
+        queryClient.invalidateQueries({
+          queryKey: [NoteQueryKey.Note],
+        }),
+        queryClient.invalidateQueries({
+          queryKey: [NoteQueryKey.Notes],
+        }),
+      ]);
       addToast(message, "success");
     } catch (e) {
       addToast((e as any)?.message, "error");

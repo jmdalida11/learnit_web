@@ -1,5 +1,9 @@
 import { Button } from "@headlessui/react";
-import { PencilSquareIcon, TrashIcon } from "@heroicons/react/24/outline";
+import {
+  PencilSquareIcon,
+  PlayIcon,
+  TrashIcon,
+} from "@heroicons/react/24/outline";
 import AcademicCapIcon from "@heroicons/react/24/solid/AcademicCapIcon";
 import { useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
@@ -78,6 +82,14 @@ const Quizzes = () => {
                   <td>{formatStringDate(quiz.createdAt)}</td>
                   <td>{formatStringDate(quiz.updatedAt)}</td>
                   <td>
+                    <Button
+                      className="btn btn-ghost hover:bg-blue-600 cursor-pointer"
+                      onClick={() => {
+                        navigate(`/quiz/${quiz.id}`);
+                      }}
+                    >
+                      <PlayIcon className="size-4" />
+                    </Button>
                     <Button
                       className="btn btn-ghost hover:bg-amber-500 cursor-pointer"
                       onClick={() => {

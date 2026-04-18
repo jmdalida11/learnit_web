@@ -10,12 +10,21 @@ export interface Category {
   name: string;
 }
 
+export const QUESTION_TYPES = [
+  "multiple_choice",
+  "multiple_answer",
+  "true_false",
+  "short_answer",
+] as const;
+
+export type QuestionType = (typeof QUESTION_TYPES)[number];
+
 export interface Question {
   id: string;
   question: string;
   options?: string[];
   correctAnswer: string;
-  type: "multiple_choice" | "multiple_answer" | "true_false" | "short_answer";
+  type: QuestionType;
 }
 
 export interface Quiz {
